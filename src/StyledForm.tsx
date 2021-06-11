@@ -11,7 +11,7 @@ export interface FormField {
 
 interface Props {
     fields: FormField[]
-    onSubmitFunction: (values: any) => void
+    onSubmitFunction: (values: any, setSubmitting: (isSubmitting: boolean) => void) => void
 }
 
 
@@ -85,7 +85,7 @@ function FormErrorSummary(isValid: boolean, errors: FormikErrors<FormikValues>) 
     </>;
 }
 
-function SimpleForm({fields, onSubmitFunction}: Props) {
+function StyledForm({fields, onSubmitFunction}: Props) {
 
 
     function InputErrorPanel(fieldError: string, fieldName: string, field: ReactElement) {
@@ -115,13 +115,7 @@ function SimpleForm({fields, onSubmitFunction}: Props) {
             validateOnChange={false}
             initialValues={initialFieldValues}
             onSubmit={(values, {setSubmitting}) => {
-                console.log("on submit")
-                setTimeout(() => {
-                    // validateForm().then(() => console.log("Validated"))
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                }, 400);
-                onSubmitFunction(values);
+                onSubmitFunction(values, setSubmitting);
             }}
         >
             {({
@@ -157,8 +151,7 @@ function SimpleForm({fields, onSubmitFunction}: Props) {
 
                     <br/>
 
-
-                    <button type="submit" className="btn" disabled={isSubmitting}>
+                    <button type="submit" className="btn" disabled={isSubmitting} data-testid={"submit-btn"}>
                         <span className="btn__inner">Save and continue</span>
                     </button>
                 </Form>
@@ -167,4 +160,4 @@ function SimpleForm({fields, onSubmitFunction}: Props) {
     )
 }
 
-export default SimpleForm;
+export default StyledForm;
