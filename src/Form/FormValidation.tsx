@@ -1,3 +1,8 @@
+/**
+ * Validate Name field
+ *
+ * @param {string} value Field value to validate
+ */
 export function validateName(value: string) {
     let error;
     if (!value) {
@@ -10,6 +15,11 @@ export function validateName(value: string) {
     return error
 }
 
+/**
+ * Validate Password field
+ *
+ * @param {string} value Field value to validate
+ */
 export function validatePassword(value: string) {
     let error;
     if (!value) {
@@ -22,6 +32,11 @@ export function validatePassword(value: string) {
     return error
 }
 
+/**
+ * Validate Email field
+ *
+ * @param {string} value Field value to validate
+ */
 export function validateEmail(value: string) {
     let error;
     if (!value) {

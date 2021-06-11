@@ -39,6 +39,16 @@ const ONSInputField = ({field, form, description, ...props}: any) => {
     </>
 };
 
+/**
+ * Error summary list
+ *  - Displayed when isValid is false.
+ *  - Focuses div when error lists changes.
+ *
+ *
+ * @param {boolean} isValid Whether the form is valid or not
+ * @param {FormikErrors<FormikValues>} errors List of errors for all field
+ * @constructor
+ */
 function FormErrorSummary(isValid: boolean, errors: FormikErrors<FormikValues>) {
     let errorFocus: HTMLDivElement | null;
 
@@ -85,6 +95,14 @@ function FormErrorSummary(isValid: boolean, errors: FormikErrors<FormikValues>) 
     </>;
 }
 
+/**
+ * Formik form styled to ONS design guide with form error panel
+ *
+ * @param Props
+ *
+ *  - fields: List of fields to display on form.
+ *  - onSubmitFunction: Function to call after submit of form and all field validation is valid.
+ */
 function StyledForm({fields, onSubmitFunction}: Props) {
 
 
@@ -108,7 +126,6 @@ function StyledForm({fields, onSubmitFunction}: Props) {
         initialFieldValues[name] = "";
     });
 
-    console.log(initialFieldValues)
     return (
         <Formik
             validateOnBlur={false}
